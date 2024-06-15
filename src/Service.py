@@ -16,13 +16,14 @@ def index():
 
 @app.route("/chat", methods=['POST', 'GET'])
 def chat_bot():
-    question = request.values.get("mess")
+    chart = request.values.get("chart")
+    mess = request.values.get("mess")
 
-    if not question:
+    if not mess:
         response = "無內容"
     else:
         try:
-            response = call_aied(question)
+            response = call_aied(chart, mess)
         except Exception as e:
             print(f"get error: {e}")
             response = f"Error: {e}"
