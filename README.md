@@ -25,3 +25,6 @@
 如有任何問題，歡迎聯絡：
 - 電子郵件: [justin.hsu.1019@gmail.com]
 - LinkedIn: [https://www.linkedin.com/in/justinhsu101999]
+
+## License
+This repository is licensed under the [MIT License](https://github.com/JustinHsu1019/LLM_Workflow_Research/blob/main/LICENSE).
