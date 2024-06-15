@@ -25,7 +25,7 @@ def call_aied(chart, mess):
     try:
         # res = GPT_Template(prompt)
         res = Gemini_Template(prompt)
-        res = json.loads(res)["輸出"]
+        res = json.loads(res)["流程遵守"]
     except:
         res = "LLM 當掉囉! 請重新發問 >_<"
 
