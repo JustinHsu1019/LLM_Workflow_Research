@@ -1,4 +1,5 @@
 import textwrap
+import openai
 from openai import AzureOpenAI
 
 import sys, os
@@ -9,7 +10,25 @@ config, logger, CONFIG_PATH = config_log.setup_config_and_logging()
 config.read(CONFIG_PATH)
 
 def GPT_Template(prompt, output_way="json"):
-    """GPT-35 使用模板"""
+    """OpenAI GPT-4o 使用模板"""
+    OPEN_AI_VERSION = 'Open_AI_Only'
+    openai.api_key = config.get(OPEN_AI_VERSION, 'api_key')
+
+    userPrompt = textwrap.dedent(f"""
+        {prompt}
+    """)
+
+    response = openai.ChatCompletion.create(
+        model="gpt-4o",
+        messages=[
+            {"role": "system", "content": f"使用繁體中文回答, 並使用 {output_way} 格式回傳"},
+            {"role": "user", "content": userPrompt},
+        ]
+    )
+    return response.choices[0].message['content']
+
+def AGPT_Template(prompt, output_way="json"):
+    """AzureOpenAI GPT-35 使用模板"""
     Azure_Open_AI_VERSION = 'Open_AI'
     client = AzureOpenAI(
         azure_endpoint = config.get(Azure_Open_AI_VERSION, 'azure_endpoint'),
